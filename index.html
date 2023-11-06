@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!--만든이 : 치즈퍼리-->
+
+<head>
+  <lang="ko">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>AQUA STUDIO</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta name="description" content="2023 AQUA STUDIO">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body>
+  <div class="navbars">
+    <img
+      src="https://cdn.discordapp.com/attachments/1163457070591393815/1170237879549710366/SGN_08_16_2024_1723810938900.png?ex=65584ff4&is=6545daf4&hm=c488a43be0f428ce29e9ab61a59fb633ce98284e081b6d5c93c4b813a2f2506c&"
+      alt="내비게이션바 로고" class="nvbimage">
+  </div>
+
+  <a class="black3text">`</a>
+  <div class="navbar">
+    <a href="index.html"><i class="fa-solid fa-house"></i> 홈</a>
+    <a href="#news"><i class="fa-brands fa-discord"></i> 커뮤니티</a>
+    <a href="service.html"><i class="fa-solid fa-bell-concierge"></i> 서비스</a>
+    <a href="sells.html"><i class="fa-solid fa-tags"></i> 판매상품</a>
+    <a href="login.html"><i class="fa-solid fa-screwdriver-wrench"></i> 관리자 패널</a>
+  </div>
+  <div class="main">
+    <!--div class="scrollmenu">
+      <a href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#support">Support</a>
+      <a href="#blog">Blog</a>
+      <a href="#tools">Tools</a>
+      <a href="#base">Base</a>
+      <a href="#custom">Custom</a>
+      <a href="#more">More</a>
+      <a href="#logo">Logo</a>
+      <a href="#friends">Friends</a>
+      <a href="#partners">Partners</a>
+      <a href="#people">People</a>
+      <a href="#work">Work</a>
+  </div-->
+
+    <a class="blacktext">`</a>
+    <h1 id="greeting">AQUA STUDIO</h1>
+    <h2 id="greeting">👋 안녕하세요, 로블록스 모델전문 아쿠아 스튜디오 입니다!</h2>
+    <!--h2 id="greeting">jfdgskfjgld;gkljfjasgjfgjsfd;lhk;djfjkfhgh</h2-->
+    <button class="gotomodelBtn">상품 둘러보기 </button> <button class="gotomodelBtn">서버 참가하기 </button>
+    <!--footer>
+      <h>1</h>
+  </footer-->
+    <!--푸터설정은 나중에~^^-->
+    <div class="alert" id="myAlert"><i class="fa-solid fa-circle-exclamation"></i>현재 이 웹사이트는 개발중입니다.</div>
+
+    <script>
+      // 알림 메시지를 보이게 하고 일정 시간 후에 숨깁니다.
+      function showAlert(message, timeout) {
+        var alertElement = document.getElementById("myAlert");
+        alertElement.style.display = "block";
+        alertElement.innerHTML = message;
+
+        setTimeout(function () {
+          alertElement.style.display = "none";
+        }, timeout);
+      }
+
+      // 5초 후에 알림 메시지를 표시하고 3초 후에 숨깁니다.
+      showAlert("현재 이 웹사이트는 개발중입니다.", 5000);
+    </script>
+
+    <script>
+      window.onload = function () {
+        // 페이지가 로드될 때 실행될 JavaScript 코드
+        var inputElement = document.getElementById('greeting-input');
+        inputElement.value = '안녕하세요';
+      };
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <head>
+    <lang="ko">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <title>AQUA STUDIO - 판매상품 보기</title>
+      <link href="style.css" rel="stylesheet" type="text/css" />
+      <meta name="description" content="2023 AQUA STUDIO">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+
+      
+  </head>
+
+<body>
+  <div class="navbars">
+    <img
+      src="https://cdn.discordapp.com/attachments/1163457070591393815/1170237879549710366/SGN_08_16_2024_1723810938900.png?ex=65584ff4&is=6545daf4&hm=c488a43be0f428ce29e9ab61a59fb633ce98284e081b6d5c93c4b813a2f2506c&"
+      alt="내비게이션바 로고" class="nvbimage">
+  </div>
+  <div class="navbar">
+    <a href="index.html"><i class="fa-solid fa-house"></i> 홈</a>
+    <a href="#news"><i class="fa-brands fa-discord"></i> 커뮤니티</a>
+    <a href="service.html"><i class="fa-solid fa-bell-concierge"></i> 서비스</a>
+    <a href="sells.html"><i class="fa-solid fa-tags"></i> 판매상품</a>
+    <a href="login.html"><i class="fa-solid fa-screwdriver-wrench"></i> 관리자 패널</a>
+  </div>
+
+  <div class="main">
+    <a class="blacktext">asdasdasd</a>
+    <a class="black2text">''</a>
+    <a class="blacktext">`</a>
+    <a class="blacktext">`</a>
+    <a class="blacktext">`</a>
+    <a class="blacktext">`</a>
+    <div id="add-product-button-container">
+        <button id="add-product-button" class="sellsBtn" onclick="myFunction()">상품 추가</button>
+    </div>
+
+    <div id="product-form">
+        <h2>상품 정보 입력</h2>
+        <label class="lab2l" for="product-name">상품 이름: </label>
+        <input class="lab2l" type="text" id="product-name"><br>
+        <label class="lab2l" for="product-price">가격: </label>
+        <input class="lab2l" type="text" id="product-price"><br>
+        <label class="lab2l" for="product-description">설명: </label>
+        <textarea id="product-description"></textarea><br>
+        <button id="add-button">추가</button>
+        <button id="cancel-button">취소</button>
+    </div>
+
+    <div id="product-list">
+        <!-- 상품이 여기에 추가됩니다. -->
+    </div>
+
+    
+  </div>
+
+  <div id="snackbar">현재 이기능은 오류가 많습니다.</div>
+
+  <script>
+      // 로컬 스토리지에서 저장된 상품 정보를 가져옵니다.
+      const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+      // 초기 상품 목록을 렌더링합니다.
+      const productList = document.getElementById("product-list");
+
+      function renderProductList() {
+          productList.innerHTML = ''; // 리스트 초기화
+
+          for (let i = 0; i < savedProducts.length; i++) {
+              const product = savedProducts[i];
+
+              // 새 상품을 생성하고 리스트에 추가합니다.
+              const productItem = document.createElement("div");
+              productItem.className = "product-item";
+              productItem.innerHTML = `
+                  <h1>${product.name}</h1>
+                  <p>가격: $${product.price}</p>
+                  <p>설명: ${product.description}</p>
+                  <button class="remove-button" data-index="${i}">상품 제거</button>
+              `;
+              productList.appendChild(productItem);
+          }
+      }
+
+      renderProductList();
+
+      // 버튼과 폼 요소를 가져옵니다.
+      const addButton = document.getElementById("add-product-button");
+      const productForm = document.getElementById("product-form");
+      const addProductButton = document.getElementById("add-button");
+      const cancelButton = document.getElementById("cancel-button");
+
+      // "상품 추가" 버튼을 클릭하면 폼이 나타납니다.
+      addButton.addEventListener("click", () => {
+          productForm.style.display = "block";
+      });
+
+      // "추가" 버튼을 클릭하면 새 상품이 리스트에 추가됩니다.
+      addProductButton.addEventListener("click", () => {
+          const productName = document.getElementById("product-name").value;
+          const productPrice = document.getElementById("product-price").value;
+          const productDescription = document.getElementById("product-description").value;
+
+          // 새 상품을 생성하고 리스트에 추가합니다.
+          const newProduct = {
+              name: productName,
+              price: productPrice,
+              description: productDescription,
+          };
+
+          savedProducts.push(newProduct);
+          localStorage.setItem("products", JSON.stringify(savedProducts));
+
+          // 리스트 다시 렌더링
+          renderProductList();
+
+          // 폼 초기화 및 숨김 처리
+          document.getElementById("product-name").value = "";
+          document.getElementById("product-price").value = "";
+          document.getElementById("product-description").value = "";
+          productForm.style.display = "none";
+      });
+
+      // "취소" 버튼을 클릭하면 폼이 초기화 및 숨김 처리됩니다.
+      cancelButton.addEventListener("click", () => {
+          document.getElementById("product-name").value = "";
+          document.getElementById("product-price").value = "";
+          document.getElementById("product-description").value = "";
+          productForm.style.display = "none";
+      });
+
+      // "상품 제거" 버튼을 클릭하면 해당 상품을 제거합니다.
+      productList.addEventListener("click", (event) => {
+          if (event.target.classList.contains("remove-button")) {
+              const index = event.target.getAttribute("data-index");
+              savedProducts.splice(index, 1);
+              localStorage.setItem("products", JSON.stringify(savedProducts));
+              renderProductList(); // 리스트 다시 렌더링
+          }
+      });
+  </script>
+
+<script>
+function myFunction() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+</script>
+
+</body>
+
+
+</html>
